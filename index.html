@@ -2,29 +2,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Happy Anniversary Yuvraj ❤️</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
+    /* Background & font */
     body {
-      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #ffe6f0 0%, #ff99cc 100%);
+      font-family: 'Poppins', sans-serif;
+      color: #b30059;
       text-align: center;
-      background-color: #ffe6f0;
-      color: #ff3399;
-      padding: 50px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin: 5px 0 25px;
+    }
+
+    /* Image styling */
+    img {
+      width: 300px;
+      max-width: 90vw;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 51, 153, 0.5);
+      display: block;
+      margin: 0 auto 30px;
+    }
+
+    /* Play button */
     button {
       background-color: #ff3399;
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 30px;
       cursor: pointer;
-      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+      user-select: none;
     }
     button:hover {
       background-color: #e60073;
+    }
+
+    /* Heart animation container */
+    .hearts {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: visible;
+      z-index: 9999;
+    }
+
+    /* Single heart style & animation */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background-color: #ff3366;
+      transform: rotate(-45deg);
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 3px #ff66aa);
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff3366;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    /* Animate hearts moving upwards and fading */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(-45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(-45deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -34,22 +124,60 @@
   <p>I love you forever.</p>
   <p>– From your cutie ❤️</p>
 
+  <!-- Replace 'your-image.jpg' with your actual image filename -->
+  <img src="anniversary-bg.jpg" alt="Us ❤️" />
+
   <!-- Play Music Button -->
   <button onclick="playMusic()">Play Music 🎵</button>
 
-  <!-- Hidden Audio Player -->
+  <!-- Audio Player -->
   <audio id="bg-music" loop>
-    <source src="bg-music.mp3" type="audio/mpeg">
+    <source src="bg-music.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Hearts container -->
+  <div class="hearts"></div>
+
   <script>
+    // Play music function
     function playMusic() {
       const audio = document.getElementById('bg-music');
-      audio.play().catch((e) => {
+      audio.play().then(() => {
+        const btn = document.querySelector('button');
+        btn.innerText = "Music Playing 🎶";
+        btn.disabled = true;
+      }).catch((e) => {
         console.log("Autoplay failed:", e);
       });
     }
+
+    // Generate hearts periodically
+    const heartsContainer = document.querySelector('.hearts');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      // Random horizontal position within viewport width
+      heart.style.left = Math.random() * 100 + 'vw';
+      // Random animation duration between 5 and 8 seconds
+      heart.style.animationDuration = (5 + Math.random() * 3) + 's';
+      // Random size between 10px and 25px
+      const size = 10 + Math.random() * 15;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+      heart.style.setProperty('--size', size + 'px');
+
+      heartsContainer.appendChild(heart);
+
+      // Remove the heart after animation ends
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    // Create a new heart every 400ms
+    setInterval(createHeart, 400);
   </script>
 
 </body>
