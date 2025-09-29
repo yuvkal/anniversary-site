@@ -23,16 +23,33 @@
       min-height: 100vh;
     }
 
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Header styling */
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
+      font-size: 4rem;
       margin-bottom: 10px;
       letter-spacing: 2px;
+      animation: fadeInUp 1s ease forwards;
     }
 
     p {
-      font-size: 1.3rem;
-      margin: 5px 0 25px;
+      font-size: 1.5rem;
+      margin: 10px 0 30px;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
     }
 
     /* Image styling */
@@ -43,6 +60,9 @@
       box-shadow: 0 0 20px rgba(255, 51, 153, 0.5);
       display: block;
       margin: 0 auto 30px;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1s;
+      opacity: 0;
     }
 
     /* Play button */
@@ -58,6 +78,9 @@
       transition: background-color 0.3s ease;
       font-weight: 600;
       user-select: none;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.5s;
+      opacity: 0;
     }
     button:hover {
       background-color: #e60073;
@@ -125,7 +148,7 @@
   <p>– From your cutie ❤️</p>
 
   <!-- Replace 'your-image.jpg' with your actual image filename -->
-  <img src="anniversary-bg.jpg" alt="Us ❤️" />
+  <img src="your-image.jpg" alt="Us ❤️" />
 
   <!-- Play Music Button -->
   <button onclick="playMusic()">Play Music 🎵</button>
@@ -166,7 +189,6 @@
       const size = 10 + Math.random() * 15;
       heart.style.width = size + 'px';
       heart.style.height = size + 'px';
-      heart.style.setProperty('--size', size + 'px');
 
       heartsContainer.appendChild(heart);
 
@@ -178,6 +200,15 @@
 
     // Create a new heart every 400ms
     setInterval(createHeart, 400);
+
+    // Fade in elements after page load
+    window.addEventListener('load', () => {
+      const elementsToFade = document.querySelectorAll('h1, p, img, button');
+      elementsToFade.forEach((el, i) => {
+        el.style.animationPlayState = 'running';
+        el.style.opacity = '1';
+      });
+    });
   </script>
 
 </body>
