@@ -1,81 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Anniversary Yuvraj ❤️</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: url('anniversary-bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      color: #fff;
+      background-color: #ffe6f0;
+      color: #ff3399;
+      padding: 50px;
     }
-
-    .container {
-      background: transparent !important;
-      padding: 40px;
-      border-radius: 0;
-      box-shadow: none !important;
-      max-width: 600px;
-      animation: fadeIn 2s ease;
+    button {
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
     }
-
-    h1 {
-      font-size: 2.5em;
-      color: #ffccdd;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-top: 10px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-    }
-
-    .heart {
-      font-size: 3em;
-      color: red;
-      animation: beat 1s infinite;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    }
-
-    @keyframes beat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    button:hover {
+      background-color: #e60073;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="heart">❤️</div>
-    <h1>Happy One Year to Us, Yuvraj! I love you the most, baby!!!!</h1>
-    <p>I love you forever.</p>
-    <p>– From your cutie 💖</p>
-  </div>
 
-  <!-- 🎵 Background Music -->
-  <audio autoplay loop>
+  <h1>Happy One Year to Us, Yuvraj! I love you the most, baby!!!!</h1>
+  <p>I love you forever.</p>
+  <p>– From your cutie ❤️</p>
+
+  <!-- Play Music Button -->
+  <button onclick="playMusic()">Play Music 🎵</button>
+
+  <!-- Hidden Audio Player -->
+  <audio id="bg-music" loop>
     <source src="bg-music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+
+  <script>
+    function playMusic() {
+      const audio = document.getElementById('bg-music');
+      audio.play().catch((e) => {
+        console.log("Autoplay failed:", e);
+      });
+    }
+  </script>
+
 </body>
 </html>
 
-    
